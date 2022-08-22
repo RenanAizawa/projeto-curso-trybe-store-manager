@@ -14,6 +14,16 @@ const getAll = async () => {
   };
 };
 
+const getById = async (id) => {
+  const products = await productsModel.getAllProducts;
+  const result = products.find((item) => item.id === id);
+  return {
+    status: 200,
+    result,
+  };
+};
+
 module.exports = {
   getAll,
+  getById,
 };
