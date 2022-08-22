@@ -1,7 +1,7 @@
 const productsModel = require('../models/productsModel');
 
 const getAll = async () => {
-  const result = await productsModel.getAllProducts;
+  const result = await productsModel.getAllProducts();
   if (!result) {
     return null;
   }
@@ -9,7 +9,7 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
-  const products = await productsModel.getAllProducts;
+  const products = await productsModel.getAllProducts();
   const result = products.find((item) => item.id === id);
   return result;
 };
