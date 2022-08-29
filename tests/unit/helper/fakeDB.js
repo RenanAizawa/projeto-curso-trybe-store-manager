@@ -16,11 +16,11 @@ const products = [
 const sales = [
   {
     id: 1,
-    date: NOW()
+    date: Date.now()
   },
   {
     id: 2,
-    date: NOW()
+    date: Date.now()
   }
 ]
 
