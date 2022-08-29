@@ -11,7 +11,6 @@ describe('Testando Controller products', () => {
   describe('testando o sucesso das chamadas', () => {
     it('testando allProducts', async () => {
       sinon.stub(productsService, 'getAll').resolves(fakeAll);
-      const result = await productsService.getAll();
 
       const req = {};
       const res = {};
@@ -27,7 +26,6 @@ describe('Testando Controller products', () => {
     });
     it('testando productsId', async () => {
       sinon.stub(productsService, 'getById').resolves(fakeId);
-      const result = await productsService.getAll();
 
       const req = {};
       const res = {};
@@ -45,7 +43,6 @@ describe('Testando Controller products', () => {
   describe('testando a falha das chamadas', () => {
     it('testando o erro de allProducts', async () => {
       sinon.stub(productsService, 'getAll').resolves(null);
-      const result = await productsService.getAll();
 
       const req = {};
       const res = {};
@@ -60,7 +57,6 @@ describe('Testando Controller products', () => {
     });
     it('testando o erro de productsId', async () => {
       sinon.stub(productsService, 'getById').resolves(null);
-      const result = await productsService.getAll();
 
       const req = {};
       const res = {};
@@ -76,7 +72,7 @@ describe('Testando Controller products', () => {
     });
     it('testando reject no getAll', async () => {
       sinon.stub(productsService, 'getAll').rejects();
-      const result = await productsService.getAll();
+
 
       const req = {};
       const res = {};
@@ -86,7 +82,21 @@ describe('Testando Controller products', () => {
 
       await productsController.allProducts(req, res);
 
-      expect(res.status.calledWith(404)).to.be.true
+      expect(res.status.calledWith(500)).to.be.true
+
     })
+    it('testando o reject no getById', async () => {
+      sinon.stub(productsService, 'getById').rejects();
+      const req = {};
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      await productsController.productsId(req, res);
+
+      expect(res.status.calledWith(500)).to.be.true
+
+    });
   });
 });

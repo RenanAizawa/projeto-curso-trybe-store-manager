@@ -7,8 +7,8 @@ const allProducts = async (req, res) => {
       return res.status(404).json({ message: 'Product not found' });
     }
     return res.status(200).json(data);
-  } catch (e) {
-    return res.status(404).json({ message: e });
+  } catch (_e) {
+    return res.status(500).json({ message: 'Erro na aplicação' });
   }
 };
 
@@ -20,8 +20,8 @@ const productsId = async (req, res) => {
       return res.status(404).json({ message: 'Product not found' });
     }
     return res.status(200).json(data);
-  } catch (e) {
-    return res.status(404).json({ message: e });
+  } catch (_e) {
+    return res.status(500).json({ message: 'Erro na aplicação' });
   }
 };
 
