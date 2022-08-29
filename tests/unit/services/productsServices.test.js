@@ -24,13 +24,13 @@ describe('Testando Service products', () => {
   });
   describe('Testa o retorno correto caso haja erro', () => {
     it('testar retorno de getAll', async () => {
-      sinon.stub(productsModel, 'getAllProducts').resolves({});
+      sinon.stub(productsModel, 'getAllProducts').resolves();
       const result = await productsService.getAll();
 
       expect(result).to.be.eq(null);
     });
     it('testar o retorno de getById', async () => {
-      sinon.stub(productsModel, 'getProductById').resolves({});
+      sinon.stub(productsModel, 'getProductById').resolves();
       const result = await productsService.getById(1);
 
       expect(result).to.be.eq(null);
