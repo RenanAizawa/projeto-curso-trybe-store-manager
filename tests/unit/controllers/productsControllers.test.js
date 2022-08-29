@@ -74,5 +74,19 @@ describe('Testando Controller products', () => {
       expect(res.status.calledWith(404)).to.be.true
       expect(res.json.calledWith({ message: 'Product not found' })).to.be.true
     });
+    it('testando reject no getAll', async () => {
+      sinon.stub(productsService, 'getAll').rejects();
+      const result = await productsService.getAll();
+
+      const req = {};
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      await productsController.allProducts(req, res);
+
+      expect(res.status.calledWith(404)).to.be.true
+    })
   });
 });

@@ -8,8 +8,7 @@ const allProducts = async (req, res) => {
     }
     return res.status(200).json(data);
   } catch (e) {
-    console.log(e);
-    return res.status(404).json({ message: 'Erro na aplicação' });
+    return res.status(404).json({ message: e });
   }
 };
 
@@ -22,8 +21,7 @@ const productsId = async (req, res) => {
     }
     return res.status(200).json(data);
   } catch (e) {
-    console.log(e);
-    return res.status(404).json({ message: 'Erro na aplicação' });
+    return res.status(404).json({ message: e });
   }
 };
 
