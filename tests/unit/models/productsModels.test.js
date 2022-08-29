@@ -1,6 +1,6 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
-const { products } = require('../helper/fakeDB');
+const { products, products1 } = require('../helper/fakeDB');
 const productsModel = require('../../../models/productsModel');
 const connection = require('../../../models/connection');
 
@@ -8,6 +8,7 @@ describe('Teste Model products', () => {
   beforeEach(sinon.restore)
   describe('Consulta de produtos', () => {
     const fakeAll = products;
+    const fakeAll1 = products1;
     const fakeId = products[0]
     it('Consulta todos os produtos', async () => {
       sinon.stub(connection, 'execute').resolves([fakeAll]);
@@ -22,4 +23,9 @@ describe('Teste Model products', () => {
       expect(findId).to.be.eq(fakeId);
     });
   });
+  describe('Criação de produtos', () => {
+    it('criar o produto aveia', async () => {
+      sinon.stub(connection, 'execute').resolves();
+    });
+  })
 });

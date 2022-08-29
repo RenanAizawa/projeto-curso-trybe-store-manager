@@ -13,6 +13,26 @@ const products = [
   }
 ]
 
+const products1 = [
+  {
+    id: 1,
+    name: 'Martelo de Thor'
+  },
+  {
+    id: 2,
+    name: 'Traje de encolhimento'
+  },
+  {
+    id: 3,
+    name: 'Escudo do Capitão América'
+  },
+  {
+    id: 4,
+    name: 'aveia'
+  }
+]
+
+
 const sales = [
   {
     id: 1,
@@ -44,6 +64,7 @@ const sales_products = [
 
 module.exports = {
   products,
+  products1,
   sales,
   sales_products
 }

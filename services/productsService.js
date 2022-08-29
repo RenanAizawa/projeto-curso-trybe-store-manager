@@ -16,7 +16,12 @@ const getById = async (id) => {
   return product;
 };
 
+const createdProduct = (name) => {
+  
+};
+
 module.exports = {
   getAll,
   getById,
+  createdProduct,
 };
