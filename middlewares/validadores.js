@@ -2,7 +2,7 @@ const joi = require('joi');
 const st = require('./stringsToUse');
 
 const nameValidador = (name) => {
-  const validador = joi.string().min(1).max(255).required
+  const validador = joi.string().min(5).max(255).required()
     .message({
       'string.base': st.STRING_BASE,
       'string.empty': st.STRING_EMPTY,

@@ -24,8 +24,20 @@ describe('Teste Model products', () => {
     });
   });
   describe('Criação de produtos', () => {
-    it('criar o produto aveia', async () => {
-      sinon.stub(connection, 'execute').resolves();
+    it('Inserir um novo produto na tabela "products"', async () => {
+      const result = { insertId: 1 }
+      const name = 'hortelã'
+      const obg = {
+        product: {
+          id: result.insertId,
+          name,
+        },
+      };
+      sinon.stub(connection, 'execute').resolves([result]);
+
+      const queryResult = await productsModel.createdProduct(name);
+
+      expect(queryResult).to.be.eq(obg)
     });
   })
 });
