@@ -54,12 +54,24 @@ describe('Testando Service products', () => {
     });
   });
   describe('Testando o retorno em caso o campo nome seja invalido', () => {
-    it('name vazio', async () => {
+    it('name é undifined', async () => {
       const obj = {
-        code: 422,
+        code: 400,
         message: strings.STRING_EMPTY
       }
       const name = '';
+      sinon.stub(validador, 'nameValidador').returns(obj);
+      const result = await productsService.createdProduct(name)
+
+      expect(result).to.be.deep.eq(obj);
+      expect(result).to.have.all.keys('code', 'message')
+    })
+    it('name tem que ter no minimo 5 caracteres', async () => {
+      const obj = {
+        code: 422,
+        message: strings.STRING_MIN
+      }
+      const name = "1234";
       sinon.stub(validador, 'nameValidador').returns(obj);
       const result = await productsService.createdProduct(name)
 

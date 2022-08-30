@@ -21,7 +21,7 @@ const createdProduct = async (name) => {
   const resposta = validador.nameValidador(name);
   if (resposta.message) {
     return {
-      code: 422,
+      code: resposta.code,
       message: resposta.message,
     };
   }
