@@ -28,9 +28,9 @@ const productsId = async (req, res) => {
 const productCreat = async (req, res) => {
   try {
     const { name } = req.body;
-    const { message, product } = await productsService.createdProduct(name);
+    const { code, message, product } = await productsService.createdProduct(name);
     if (message) {
-      return res.status(422).json({ message });
+      return res.status(code).json({ message });
     }
     return res.status(201).json(product);
   } catch (e) {

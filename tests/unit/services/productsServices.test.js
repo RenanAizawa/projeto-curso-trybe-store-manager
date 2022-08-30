@@ -2,7 +2,9 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const { products } = require('../helper/fakeDB');
 const productsModel = require('../../../models/productsModel');
-const productsService = require('../../../services/productsService')
+const productsService = require('../../../services/productsService');
+const validador = require('../../../middlewares/validadores');
+const strings = require('../../../middlewares/stringsToUse');
 
 describe('Testando Service products', () => {
   beforeEach(sinon.restore)
@@ -35,5 +37,34 @@ describe('Testando Service products', () => {
 
       expect(result).to.be.eq(null);
     });
+  })
+  describe('Testando o retorno em caso de sucesso de criação de novo produto', () => {
+    it('testando retorno do createdProduct', async () => {
+      const name = 'hortelã';
+      const obg = {
+        product: {
+          id: 1,
+          name,
+        },
+      };
+      sinon.stub(validador, 'nameValidador').returns(name);
+      sinon.stub(productsModel, 'createdProduct').resolves(obg);
+      const resultado = await productsService.createdProduct(name)
+      expect(resultado).to.be.deep.eq(obg);
+    });
+  });
+  describe('Testando o retorno em caso o campo nome seja invalido', () => {
+    it('name vazio', async () => {
+      const obj = {
+        code: 422,
+        message: strings.STRING_EMPTY
+      }
+      const name = '';
+      sinon.stub(validador, 'nameValidador').returns(obj);
+      const result = await productsService.createdProduct(name)
+
+      expect(result).to.be.deep.eq(obj);
+      expect(result).to.have.all.keys('code', 'message')
+    })
   })
 });

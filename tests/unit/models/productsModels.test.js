@@ -37,7 +37,7 @@ describe('Teste Model products', () => {
 
       const queryResult = await productsModel.createdProduct(name);
 
-      expect(queryResult).to.be.eq(obg)
+      expect(queryResult).to.be.deep.eq(obg)
     });
   })
 });
