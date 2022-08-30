@@ -25,7 +25,21 @@ const productsId = async (req, res) => {
   }
 };
 
+const productCreat = async (req, res) => {
+  try {
+    const { name } = req.body;
+    const { message, product } = await productsService.createdProduct(name);
+    if (!product) {
+      return res.status(404).json({ message });
+    }
+    return res.status(201).json({ id: product.id, name, message });
+  } catch (_e) {
+    return res.status(500).json({ message: 'Erro na aplicação' });
+  }
+};
+
 module.exports = {
   allProducts,
   productsId,
+  productCreat,
 };

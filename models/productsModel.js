@@ -17,7 +17,7 @@ const createdProduct = async (name) => {
   return {
     message: 'Produto criado com sucesso',
     product: {
-      id: result.id,
+      id: result.insertId,
       name,
     },
   };
