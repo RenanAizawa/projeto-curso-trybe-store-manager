@@ -32,7 +32,7 @@ const productCreat = async (req, res) => {
     if (!product) {
       return res.status(404).json({ message });
     }
-    return res.status(201).json({ id: product.id, name, message });
+    return res.status(201).json({ id: product.id, name });
   } catch (_e) {
     return res.status(500).json({ message: 'Erro na aplicação' });
   }
